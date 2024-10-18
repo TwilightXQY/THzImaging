@@ -1,3 +1,4 @@
+# radar data collect & process env
 name: radar
 channels:
   - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main
