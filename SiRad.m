@@ -31,8 +31,12 @@ WriteBuffer(SYS_CONFIG, RFE_CONFIG, PLL_CONFIG, BBS_CONFIG, serialPort);
 % 电机系统相关命令
 X_Axis_Zero = 'HX↓';    % X轴归零
 X_Axis_Stop = 'SPX↓ ';  % X轴停止
-
+X_Axis_SetSpeed = 'VX,top_speed↓'; % X轴设置速度
+X_AXis_InitialSpeed = 'FX,init_speed↓'; % X轴初速度
 Y_Axis_Zero = 'HY↓';    % Y轴归零
+Y_Axis_Stop = 'SPY↓ ';  % X轴停止
+Y_Axis_SetSpeed = 'VY,top_speed↓'; % X轴设置速度
+Y_AXis_InitialSpeed = 'FY,init_speed↓'; % X轴初速度
 
 % 创建一个csv文件
 rawdata = fopen('raw.csv', 'w+');   
