@@ -33,5 +33,8 @@ for i in range (0, len(cooked.columns), 84):
     dist_data[i / 84] = distance
     tag = tag + 1
 
-print(dist_data)        
-        
+# 将距离信息写入final.csv
+header = list(dist_data.keys()) 
+with open('final.csv', 'a', newline = '', encoding = 'utf-8') as f:
+    writer = csv.DictWriter(f, fieldnames = header)
+    writer.writeheader()
