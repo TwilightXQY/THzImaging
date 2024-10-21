@@ -55,15 +55,15 @@ while (1)
         str = readline(serialPort);
         if (strfind(str, "T") == 2)         % 接收到目标数据
             flag = 1;
-            WriteMotor(X_Axis_Move);        % X轴运行到下一个目标点
+            % WriteMotor(X_Axis_Move);        % X轴运行到下一个目标点
             break;
         end
     end
     fprintf(rawdata, "%s", str);
     motor_config = readline(motorPort);
-    if (strfind(motor_config, "Y") == 2)    % 电机Y轴发生变化，数据产生变化
-        break;
-    end
+    % if (strfind(motor_config, "Y") == 2)    % 电机Y轴发生变化，数据产生变化
+    %     break;
+    % end
 end
 
 % 数据采集结束后关闭csv文件
