@@ -31,7 +31,7 @@ while (flag == 0)
         end
     end
     fprintf(rawdata, "%s", str);
-    if (i == 0)  % 判断条件仍需更改
+    if (ii == 0)  % 判断条件仍需更改
         flag = 1;
     end
 end
