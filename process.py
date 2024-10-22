@@ -21,6 +21,8 @@ array = cooked.T.to_numpy()
 # 对CSV进行数据处理
 tag = 0
 dist_data = {}
+mag_data = {}
+phase_data = {}
 for i in range (0, len(cooked.columns), 84):
     if array[i] == '!T':
         current_gain = array[i + 3]
@@ -30,10 +32,14 @@ for i in range (0, len(cooked.columns), 84):
             if array[j + (tag * 84)] > mag:
                 distance = array[j + (tag * 84) - 1]
                 mag = array[j + (tag * 84)]
+                phase = array[j + (tag * 84) + 1]
     dist_data[i / 84] = distance
+    mag_data[i / 84 + 1] = mag
+    phase_data[i / 84 + 2] = phase
     tag = tag + 1
 
-# 将距离信息写入final.csv
+# 将距离、幅度、相位信息写入final.csv
+# 目前只写了写入距离
 header = list(dist_data.keys()) 
 with open('final.csv', 'a', newline = '', encoding = 'utf-8') as f:
     writer = csv.DictWriter(f, fieldnames = header)
