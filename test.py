@@ -1,10 +1,15 @@
-import csv
-datas = []
-dic = {'WWWW': 'FFFF', 'MSS': '2', 'TTL': '40', 'WS': '3', 'S': 1, 'N': 1, 'D': 0, 'T': 8, 'F': 'S', 'LEN': '3C'}
-header = list(dic.keys())
-datas.append(dic)
- 
-with open('test.csv', 'a', newline='',encoding='utf-8') as f:
-    writer = csv.DictWriter(f, fieldnames=header)  # 提前预览列名，当下面代码写入数据时，会将其一一对应。
-    writer.writeheader()  # 写入列名
-    writer.writerows(datas)  # 写入数据
+import pandas as pd
+file='dicts.csv'
+df = pd.read_csv(file)
+df.values
+data = df.values
+data = list(map(list, zip(*data)))
+data = pd.DataFrame(data)
+data.to_csv('' + file, header=0, index=0)
+
+csv_file = "dicts.csv"
+csv_data = pd.read_csv(csv_file, header = None, low_memory = False)#防止弹出警告
+csv_df = pd.DataFrame(csv_data)
+csv_df = df.apply(lambda x: x.str.strip('[]'))
+print(csv_df)
+csv_df.to_csv('output.csv')

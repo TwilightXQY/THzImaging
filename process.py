@@ -1,5 +1,6 @@
 import pandas as pd
 import csv
+import os
 
 # 读入原始数据
 raw = pd.read_csv('raw.csv', delimiter = '\t', header = None)
@@ -36,11 +37,23 @@ for i in range (0, len(cooked.columns), 84):
     dist_data[i / 84] = distance
     mag_data[i / 84 + 1] = mag
     phase_data[i / 84 + 2] = phase
-    tag = tag + 1
+    tag = tag + 1   
 
 # 将距离、幅度、相位信息写入final.csv
-# 目前只写了写入距离
-header = list(dist_data.keys()) 
-with open('final.csv', 'a', newline = '', encoding = 'utf-8') as f:
-    writer = csv.DictWriter(f, fieldnames = header)
-    writer.writeheader()
+data = [dist_data, mag_data, phase_data]
+
+with open('dicts.csv','w',newline='') as file:
+    writer = csv.writer(file)
+    writer.writerow(data[0].keys())
+    for d in data:
+        writer.writerow(d.values())
+
+df = pd.read_csv('dicts.csv')
+data = df.values
+data = list(map(list, zip(*data)))
+data = pd.DataFrame(data)
+data = df.apply(lambda x: x.str.strip('[]'))
+data.to_csv('final.csv')
+os.remove('dicts.csv')
+os.remove('medium.csv')
+
