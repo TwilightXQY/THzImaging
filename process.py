@@ -53,7 +53,9 @@ data = df.values
 data = list(map(list, zip(*data)))
 data = pd.DataFrame(data)
 data = df.apply(lambda x: x.str.strip('[]'))
-data.to_csv('final.csv')
+data.to_csv('C:\\Users\\97516\\Desktop\\final.csv')
 os.remove('dicts.csv')
 os.remove('medium.csv')
+
+
 
