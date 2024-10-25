@@ -56,6 +56,3 @@ data = df.apply(lambda x: x.str.strip('[]'))
 data.to_csv('final.csv')
 os.remove('dicts.csv')
 os.remove('medium.csv')
-
-
-
