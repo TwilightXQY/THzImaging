@@ -29,6 +29,7 @@ for i in range (0, len(cooked.columns), 84):
         current_gain = array[i + 3]
         mag = array[i + 6]
         distance = array[i + 5]
+        phase = array[i + 7]
         for j in range (6, 84, 5):
             if array[j + (tag * 84)] > mag:
                 distance = array[j + (tag * 84) - 1]
